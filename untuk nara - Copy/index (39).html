@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Nara Nexsa, Cintaku!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --soft-pink: #FFC0CB;
+            --dusty-rose: #E8A8B4;
+            --cream: #FFFDD0;
+            --light-grey: #f4f4f9;
+            --text-color: #333;
+            --accent-color: #A9334F;
+            --dark-pink-btn: #C04A6B;
+            --music-bg: #222;
+            --music-text: #eee;
+            --frame-color: #FF69B4; 
+            --dark-purple: #4B0082; 
+            --light-purple: #B19CD9; 
+            --star-gold: #FFD700;    
+        }
+
+        /* PERBAIKAN KRITIS UNTUK SLIDER (ANTI-TABRAKAN) */
+        html { box-sizing: border-box; width: 100%; height: 100%; overflow-x: hidden; }
+        *, *:before, *:after { box-sizing: inherit; }
+        body { margin: 0; width: 100vw; height: 100vh; display: flex; font-family: 'Poppins', sans-serif; background-color: var(--light-grey); color: var(--text-color); position: relative; }
+        .slide-container { 
+            display: flex; 
+            width: 600vw; /* 6 slides x 100vw */
+            height: 100vh; 
+            transform: translateX(0); 
+            transition: transform 0.7s cubic-bezier(0.4, 0.0, 0.2, 1); 
+        }
+        .slide { 
+            flex-shrink: 0; 
+            width: 100vw; 
+            height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            flex-direction: column; 
+            text-align: center; 
+            position: relative; 
+            overflow-y: auto; 
+            padding: 20px; 
+        }
+        
+        /* SLIDE 0: PRE-INTRO */
+        #slide0 { 
+            background-color: var(--dark-purple); 
+            color: white; 
+            overflow: hidden; 
+        }
+        .pre-intro-content { 
+            font-family: 'Dancing Script', cursive; 
+            font-size: 4em; 
+            text-shadow: 0 0 20px var(--soft-pink); 
+            animation: pulse 2s infinite; 
+            cursor: pointer; 
+            z-index: 2; 
+            display: flex; 
+            align-items: center; 
+        }
+        .pre-intro-content span { 
+            display: inline-block; 
+            opacity: 0; 
+            animation: fadeIn 0.8s forwards; 
+            line-height: 1.2; 
+        }
+        .pre-intro-content span:nth-child(1) { animation-delay: 0.1s; } 
+        .pre-intro-content span:nth-child(2) { animation-delay: 0.3s; } 
+        .pre-intro-content span:nth-child(3) { animation-delay: 0.5s; } 
+        .pre-intro-content span:nth-child(4) { animation-delay: 0.7s; } 
+        .pre-intro-content span:nth-child(5) { animation-delay: 0.9s; } 
+        .pre-intro-content span:nth-child(6) { animation-delay: 1.1s; } 
+        .pre-intro-content span:nth-child(7) { animation-delay: 1.3s; } 
+        
+        .small-caption { 
+            position: absolute; 
+            bottom: 20px; 
+            font-size: 1.1em; 
+            color: var(--soft-pink); 
+            animation: blink 1s infinite alternate; 
+            z-index: 1; 
+        }
+        
+        .sparkle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; 
+        }
+        .sparkle {
+            position: absolute;
+            background-color: var(--star-gold);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            opacity: 0;
+            animation: sparkle-fade 2s linear forwards; 
+        }
+        .sparkle::before {
+            content: '';
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            top: -10%;
+            left: -10%;
+            filter: blur(2px);
+        }
+        .sparkle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0.5s; }
+        .sparkle:nth-child(2) { top: 40%; left: 30%; animation-delay: 1.2s; }
+        .sparkle:nth-child(3) { top: 10%; left: 50%; animation-delay: 0.8s; }
+        .sparkle:nth-child(4) { top: 60%; left: 70%; animation-delay: 1.7s; }
+        .sparkle:nth-child(5) { top: 80%; left: 25%; animation-delay: 0.3s; }
+        .sparkle:nth-child(6) { top: 30%; left: 85%; animation-delay: 1.0s; }
+
+        @keyframes sparkle-fade {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.5); }
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+        @keyframes blink { from { opacity: 0.7; } to { opacity: 1; } }
+
+        /* SLIDE 1: INTRO */
+        #slide1 { 
+            background-color: var(--cream); 
+            background-image: 
+                radial-gradient(var(--soft-pink) 15%, transparent 16%),
+                radial-gradient(var(--dusty-rose) 15%, transparent 16%);
+            background-size: 30px 30px; 
+            background-position: 0 0, 15px 15px; 
+            animation: bg-move 30s linear infinite; 
+            overflow: hidden; 
+        }
+        @keyframes bg-move { 
+            from { background-position: 0 0, 15px 15px; } 
+            to { background-position: 300px 300px, 315px 315px; } 
+        }
+        
+        .cute-character-wrapper {
+            position: relative;
+            width: 270px; 
+            height: 270px; 
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--soft-pink), var(--dusty-rose), var(--frame-color));
+            padding: 10px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: bounce 2s infinite ease-in-out; 
+            z-index: 2; 
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .cute-character { 
+            width: 250px; 
+            height: 250px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 3px solid var(--cream); 
+            display: block;
+        }
+
+        .click-here-text { 
+            font-family: 'Dancing Script', cursive; 
+            font-size: 3em; 
+            color: var(--accent-color); 
+            text-shadow: 3px 3px 7px rgba(0,0,0,0.2); 
+            z-index: 2; 
+        }
+
+        /* Ornamen hati yang melayang */
+        .heart-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; 
+            z-index: 1; 
+        }
+        .heart {
+            position: absolute;
+            background-color: var(--soft-pink);
+            transform: rotate(-45deg); 
+            animation: float-heart 15s infinite ease-in-out;
+            opacity: 0;
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--soft-pink);
+            border-radius: 50%;
+        }
+        .heart::before { top: -50%; left: 0; }
+        .heart::after { left: 50%; top: 0; }
+        
+        /* Posisi dan animasi untuk setiap hati */
+        @keyframes float-heart {
+            0% { transform: translateY(100vh) rotate(-45deg); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(-45deg); opacity: 0; }
+        }
+
+        /* SLIDE 2: GALERI FOTO */
+        #slide2 { 
+            background: linear-gradient(135deg, var(--dusty-rose), var(--cream)); 
+            overflow: hidden; 
+            position: relative; 
+        }
+
+        /* Dekorasi Latar Belakang Slide 2 (ini tetap di latar belakang) */
+        .gallery-decoration {
+            position: absolute;
+            font-size: 4em; 
+            opacity: 0.3; 
+            color: var(--soft-pink);
+            pointer-events: none;
+            z-index: 0; 
+            animation: soft-float 20s infinite ease-in-out;
+        }
+
+        .gallery-decoration.top-left { top: 5%; left: 5%; transform: rotate(-20deg); animation-delay: 0s; --initial-rotate: -20deg; }
+        .gallery-decoration.bottom-right { bottom: 5%; right: 5%; transform: rotate(30deg); animation-delay: 5s; --initial-rotate: 30deg; }
+        .gallery-decoration.mid-left { top: 40%; left: -2%; transform: rotate(10deg); animation-delay: 2s; font-size: 3em; --initial-rotate: 10deg;}
+        .gallery-decoration.mid-right { bottom: 30%; right: -2%; transform: rotate(-15deg); animation-delay: 7s; font-size: 3.5em; --initial-rotate: -15deg;}
+        .gallery-decoration.top-right { top: -5%; right: 10%; transform: rotate(45deg); animation-delay: 3s; font-size: 5em; --initial-rotate: 45deg;}
+
+        @keyframes soft-float {
+            0% { transform: translateY(0) rotate(var(--initial-rotate, 0deg)); }
+            50% { transform: translateY(-15px) rotate(calc(var(--initial-rotate, 0deg) + 5deg)); }
+            100% { transform: translateY(0) rotate(var(--initial-rotate, 0deg)); }
+        }
+        
+        .gallery-content { 
+            max-width: 900px; 
+            width: 100%; 
+            background-color: white; 
+            padding: 30px; 
+            border-radius: 15px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2); 
+            max-height: calc(100vh - 40px); 
+            overflow-y: auto; 
+            position: relative; 
+            z-index: 1; 
+        }
+        .gallery-content h2 { font-family: 'Dancing Script', cursive; color: var(--accent-color); font-size: 3em; margin-bottom: 20px; }
+        .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; padding: 10px; }
+        .photo-frame { 
+            position: relative; 
+            aspect-ratio: 1 / 1; 
+            overflow: hidden; 
+            border-radius: 10px; 
+            border: 5px solid var(--soft-pink); 
+            background: var(--light-grey); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            transition: transform 0.3s ease; 
+        }
+        .photo-frame:hover { transform: scale(1.05) rotate(2deg); }
+        .photo-frame::before { content: "💖"; position: absolute; top: -5px; right: -5px; font-size: 1.5em; z-index: 10; opacity: 0.9; transform: rotate(15deg); }
+        .photo-frame img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: block; 
+        }
+
+        /* Emoji di Celah Kosong (DI DALAM gallery-content) */
+        .emoji-gap {
+            position: absolute;
+            font-size: 1.8em; 
+            opacity: 0.7; 
+            pointer-events: none;
+            z-index: 2; 
+            animation: bounce-small 3s infinite ease-in-out;
+        }
+
+        /* Sesuaikan posisi agar berada di antara atau di sisi grid foto */
+        .emoji-gap.e1 { top: 10px; left: 10px; transform: rotate(5deg); animation-delay: 0.5s; --initial-rotate: 5deg; } 
+        .emoji-gap.e2 { top: 10%; right: 5%; transform: rotate(-10deg); animation-delay: 1.2s; --initial-rotate: -10deg; } 
+        .emoji-gap.e3 { bottom: 10px; left: 10px; transform: rotate(15deg); animation-delay: 0.8s; --initial-rotate: 15deg; } 
+        .emoji-gap.e4 { bottom: 10%; right: 5%; transform: rotate(-5deg); animation-delay: 1.7s; --initial-rotate: -5deg; } 
+        .emoji-gap.e5 { top: 45%; left: 3%; transform: rotate(8deg); animation-delay: 0.3s; --initial-rotate: 8deg; } 
+        .emoji-gap.e6 { top: 45%; right: 3%; transform: rotate(-2deg); animation-delay: 2.1s; --initial-rotate: -2deg; } 
+
+        @keyframes bounce-small {
+            0%, 100% { transform: translateY(0) rotate(var(--initial-rotate, 0deg)); }
+            50% { transform: translateY(-5px) rotate(calc(var(--initial-rotate, 0deg) + 2deg)); }
+        }
+
+        /* PERBAIKAN: Tombol Navigasi Estetik (Digunakan di Slide 2 & 3) */
+        .nav-button { 
+            padding: 12px 30px; 
+            background: linear-gradient(45deg, var(--frame-color), var(--dusty-rose)); /* Gradient manis */
+            color: white; 
+            border: none; 
+            border-radius: 30px; 
+            cursor: pointer; 
+            font-weight: 600; 
+            margin-top: 25px; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2); 
+            font-size: 1.1em;
+            letter-spacing: 0.5px;
+        }
+        .nav-button:hover { 
+            background: linear-gradient(45deg, var(--dusty-rose), var(--frame-color));
+            transform: scale(1.05) translateY(-2px); 
+            box-shadow: 0 12px 20px rgba(0,0,0,0.3);
+        }
+        
+        /* SLIDE 3: PESAN UTAMA + BALON */
+        #slide3 { 
+            background-color: var(--light-grey); 
+            background-image: 
+                radial-gradient(var(--soft-pink) 5%, transparent 6%),
+                radial-gradient(var(--dusty-rose) 5%, transparent 6%);
+            background-size: 40px 40px; 
+            animation: bg-move 25s linear infinite reverse; 
+            position: relative; 
+        }
+        
+        #slide3 .container { 
+            max-width: 700px; 
+            width: 100%; 
+            background-color: white; 
+            padding: 40px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+            max-height: calc(100vh - 40px); 
+            overflow-y: auto; 
+            position: relative;
+            z-index: 10; 
+            border: 3px dashed var(--dusty-rose); 
+        }
+        
+        #slide3 h1 {
+            font-family: 'Dancing Script', cursive;
+            color: var(--frame-color); 
+            font-size: 3em;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        #slide3 h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--accent-color);
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--soft-pink);
+            padding-bottom: 5px;
+        }
+        
+        #slide3 .message {
+            padding: 15px;
+            border-left: 5px solid var(--soft-pink);
+            background-color: var(--light-grey);
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 20px;
+        }
+        
+        #slide3 .message p { line-height: 1.6; margin-bottom: 15px; text-align: justify; }
+        
+        .balloon-container { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden; 
+            pointer-events: none; 
+            z-index: 5; 
+        }
+        
+        .balloon { 
+            width: 40px; 
+            height: 55px; 
+            background: linear-gradient(to top, var(--frame-color), var(--soft-pink)); 
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; 
+            position: absolute; 
+            opacity: 0.8; 
+            animation: float 15s infinite ease-in-out; 
+        }
+        
+        .balloon:nth-child(1) { left: 10%; bottom: -50px; animation-duration: 12s; animation-delay: 0s; }
+        .balloon:nth-child(2) { left: 30%; bottom: -100px; animation-duration: 16s; animation-delay: 4s; background: linear-gradient(to top, var(--dusty-rose), var(--cream)); width: 30px; height: 45px; }
+        .balloon:nth-child(3) { left: 50%; bottom: -30px; animation-duration: 10s; animation-delay: 2s; width: 50px; height: 65px; }
+        .balloon:nth-child(4) { left: 70%; bottom: -120px; animation-duration: 14s; animation-delay: 6s; background: linear-gradient(to top, var(--accent-color), var(--dusty-rose)); }
+        .balloon:nth-child(5) { left: 90%; bottom: -60px; animation-duration: 18s; animation-delay: 8s; }
+        .balloon:nth-child(6) { left: 5%; bottom: -150px; animation-duration: 20s; animation-delay: 10s; background: linear-gradient(to top, var(--cream), #ff8c8c); }
+        .balloon:nth-child(7) { left: 45%; bottom: -80px; animation-duration: 17s; animation-delay: 1s; width: 35px; height: 50px; }
+        .balloon:nth-child(8) { left: 85%; bottom: -20px; animation-duration: 13s; animation-delay: 5s; background: linear-gradient(to top, #ff8c8c, var(--soft-pink)); width: 45px; height: 60px; }
+        
+        @keyframes float { 
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 
+            50% { opacity: 0.9; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; } 
+        }
+
+        /* --- SLIDE 4: MUSIK --- */
+        #slide4 { 
+            background: linear-gradient(45deg, #FFDAB9, #FFC0CB, #DA70D6); 
+            background-size: 400% 400%; 
+            animation: gradient-anim 15s ease infinite; 
+            color: var(--music-text); 
+            position: relative; 
+            overflow: hidden; 
+            /* BUG FIX: Mendorong Latar Belakang ke GPU untuk Stabilitas */
+            transform: translateZ(0); 
+            will-change: background-position, transform;
+        }
+
+        @keyframes gradient-anim {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .music-content { 
+            max-width: 500px; 
+            width: 100%; 
+            padding: 30px; 
+            gap: 20px; 
+            margin: auto; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            background-color: rgba(0, 0, 0, 0.4); 
+            border-radius: 25px; 
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); 
+            border: 2px solid var(--soft-pink); 
+            z-index: 10; 
+            position: relative; 
+            /* PERBAIKAN SCROLL SLIDE 4 */
+            max-height: calc(100vh - 40px); /* Batasi tinggi konten musik */
+            overflow-y: auto; /* Aktifkan scroll pada konten ini */
+            /* BUG FIX: Mendorong Konten Utama ke GPU agar tidak ikut berguncang */
+            will-change: transform; 
+            transform: translateZ(0); 
+        }
+        
+        /* Judul Lagu */
+        .music-content .music-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5em;
+            color: var(--cream); 
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Text Shadow lebih kuat agar jelas */
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 15; 
+        }
+        .music-content .music-title::before,
+        .music-content .music-title::after {
+            content: '🎶';
+            position: absolute;
+            font-size: 0.7em;
+            top: 5px;
+            opacity: 0.8;
+            animation: note-float 2s infinite alternate ease-in-out;
+            text-shadow: none; 
+        }
+        .music-content .music-title::before { left: -30px; }
+        .music-content .music-title::after { right: -30px; animation-delay: 0.5s; }
+
+        @keyframes note-float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+
+        /* PIRINGAN HITAM */
+        .album-cover-wrapper { width: 250px; height: 250px; margin-bottom: 20px; position: relative; display: flex; justify-content: center; align-items: center; }
+        .music-disc { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; background-color: #1a1a1a; animation: spin 4s linear infinite; animation-play-state: paused; border: 4px solid var(--soft-pink); box-shadow: 0 5px 15px rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center;}
+        .disc-center { width: 25px; height: 25px; background-color: var(--music-bg); border-radius: 50%; border: 2px solid rgba(255, 255, 255, 0.5); z-index: 2; }
+        .album-cover-wrapper .album-cover { position: absolute; width: 65%; height: 65%; border-radius: 50%; object-fit: cover; z-index: 1; box-shadow: 0 2px 8px rgba(0,0,0,0.3); animation: spin 4s linear infinite; animation-play-state: paused; }
+        .music-disc.playing, .album-cover-wrapper .album-cover.playing { animation-play-state: running; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        
+        /* Tombol Putar Lagu */
+        .nav-button#playMusicButton {
+            padding: 15px 40px;
+            background: linear-gradient(45deg, var(--frame-color), var(--accent-color)); 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            font-size: 1.1em;
+            letter-spacing: 1px;
+            animation: pulse-button 2s infinite alternate; 
+            border: 1px solid var(--cream);
+            margin-top: 5px; 
+        }
+        .nav-button#playMusicButton:hover {
+            background: linear-gradient(45deg, var(--accent-color), var(--frame-color));
+            transform: scale(1.05);
+        }
+        @keyframes pulse-button {
+            0% { transform: scale(1); box-shadow: 0 5px 20px rgba(0,0,0,0.3); }
+            100% { transform: scale(1.02); box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
+        }
+
+        /* Lirik Lagu */
+        .lyrics-box-music { 
+            margin-top: 25px; 
+            padding: 20px; 
+            max-height: 250px; 
+            overflow-y: auto; 
+            font-size: 0.95em; 
+            text-align: left; 
+            white-space: pre-wrap; 
+            border-radius: 12px; 
+            background-color: rgba(255, 255, 255, 0.15); 
+            width: 100%; 
+            box-sizing: border-box; 
+            border: 1px solid rgba(var(--soft-pink), 0.5); 
+            position: relative;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1); 
+            line-height: 1.5; 
+            color: var(--music-text); 
+        }
+        .lyrics-box-music::-webkit-scrollbar { width: 8px; }
+        .lyrics-box-music::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        .lyrics-box-music::-webkit-scrollbar-thumb { background: var(--soft-pink); border-radius: 10px; }
+        .lyrics-box-music::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+
+        /* Partikel Musik Berjatuhan */
+        .music-particle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1; 
+        }
+        .music-particle {
+            position: absolute;
+            opacity: 0;
+            animation: fall-and-fade 15s linear infinite;
+            font-size: 1.5em; 
+            color: var(--cream); 
+            text-shadow: 0 0 5px rgba(255,255,255,0.5);
+        }
+
+        @keyframes fall-and-fade {
+            0% { transform: translateY(-100px) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(110vh) translateX(50px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Visualizer */
+        .visualizer {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 3px;
+            height: 30px;
+            margin-top: 15px;
+            width: 80%; 
+            max-width: 250px;
+            z-index: 10; 
+        }
+        .visualizer-bar {
+            width: 8px;
+            background-color: var(--soft-pink);
+            height: 5px; 
+            border-radius: 2px;
+            animation: visualize 0.8s ease-in-out infinite alternate;
+            box-shadow: 0 0 8px var(--soft-pink);
+        }
+        .visualizer-bar:nth-child(1) { animation-delay: 0s; height: 10px; }
+        .visualizer-bar:nth-child(2) { animation-delay: 0.2s; height: 15px; }
+        .visualizer-bar:nth-child(3) { animation-delay: 0.4s; height: 20px; }
+        .visualizer-bar:nth-child(4) { animation-delay: 0.6s; height: 12px; }
+        .visualizer-bar:nth-child(5) { animation-delay: 0.8s; height: 18px; }
+        .visualizer-bar:nth-child(6) { animation-delay: 1s; height: 8px; }
+        
+        .visualizer.paused .visualizer-bar {
+            animation-play-state: paused;
+            height: 5px !important; 
+        }
+
+        @keyframes visualize {
+            0% { height: 5px; }
+            50% { height: 25px; }
+            100% { height: 5px; }
+        }
+
+        /* --- SLIDE 5: PENUTUP --- */
+        #slide5 {
+            background: linear-gradient(to bottom right, var(--cream), var(--soft-pink));
+            color: var(--accent-color);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .closing-content {
+            max-width: 600px;
+            width: 90%;
+            padding: 40px;
+            background-color: white;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 10;
+            border: 5px double var(--frame-color);
+            transform: rotate(-1deg); /* Efek kartu yang dimiringkan */
+            animation: appear-scale 0.5s ease-out forwards;
+        }
+        @keyframes appear-scale {
+            from { transform: scale(0.8) rotate(-1deg); opacity: 0; }
+            to { transform: scale(1) rotate(-1deg); opacity: 1; }
+        }
+
+        .closing-content h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4em;
+            color: var(--frame-color);
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 5px var(--dusty-rose);
+        }
+        .closing-content h2 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.5em;
+            color: var(--accent-color);
+            margin-top: 0;
+            border-bottom: 3px solid var(--soft-pink);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .closing-content p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .closing-content p strong {
+            color: var(--dark-pink-btn);
+        }
+
+        .closing-signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5em;
+            color: var(--dark-purple);
+            text-align: right;
+            margin-top: 30px;
+        }
+
+        /* Ornamen Bintang di Slide Penutup */
+        .star-decoration {
+            position: absolute;
+            font-size: 2.5em;
+            color: var(--star-gold);
+            opacity: 0.8;
+            animation: spin-and-pulse 4s infinite alternate ease-in-out;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .star-decoration.s1 { top: 10%; left: 5%; transform: rotate(10deg); animation-delay: 0s; }
+        .star-decoration.s2 { bottom: 15%; right: 10%; transform: rotate(-20deg); animation-delay: 1s; font-size: 3em; }
+        .star-decoration.s3 { top: 50%; right: 5%; transform: rotate(5deg); animation-delay: 2s; }
+        .star-decoration.s4 { bottom: 5%; left: 20%; transform: rotate(-5deg); animation-delay: 3s; font-size: 2em; }
+
+        @keyframes spin-and-pulse {
+            0% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+            50% { transform: scale(1.1) rotate(5deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+        }
+
+
+        /* Media Queries umum untuk responsif */
+        @media (max-width: 768px) { 
+            .pre-intro-content { font-size: 2.5em; }
+            .click-here-text { font-size: 2.5em; }
+            .cute-character-wrapper { width: 200px; height: 200px; padding: 8px; }
+            .cute-character { width: 180px; height: 180px; }
+            .gallery-content h2 { font-size: 2.2em; }
+            .photo-grid { grid-template-columns: repeat(2, 1fr); } 
+            .emoji-gap { font-size: 1.2em; }
+            #slide3 h1 { font-size: 2em; }
+            #slide3 h2 { font-size: 1.5em; }
+            #slide3 .message p { font-size: 0.9em; }
+            .gallery-decoration { font-size: 2em; } 
+            .music-content { padding: 20px; gap: 15px; max-width: 90%;}
+            .music-content .music-title { font-size: 2em; }
+            .album-cover-wrapper { width: 200px; height: 200px; }
+            .lyrics-box-music { max-height: 200px; font-size: 0.9em; padding: 15px; }
+            .nav-button#playMusicButton { padding: 12px 30px; font-size: 1em; }
+            .visualizer-bar { width: 6px; }
+            .closing-content { padding: 30px; }
+            .closing-content h1 { font-size: 3em; }
+            .closing-content h2 { font-size: 1.3em; }
+            .closing-content p { font-size: 1em; }
+            .closing-signature { font-size: 2em; }
+        }
+        @media (max-width: 480px) {
+            .slide { padding: 10px; }
+            .pre-intro-content { font-size: 1.8em; }
+            .click-here-text { font-size: 1.8em; }
+            .cute-character-wrapper { width: 150px; height: 150px; padding: 5px; }
+            .cute-character { width: 140px; height: 140px; }
+            .gallery-content h2 { font-size: 1.8em; }
+            .photo-grid { grid-template-columns: 1fr; } 
+            .gallery-content { padding: 15px; } 
+            #slide3 h1 { font-size: 1.5em; }
+            #slide3 h2 { font-size: 1.2em; }
+            #slide3 .message p { font-size: 0.8em; }
+            .lyrics-box-music { font-size: 0.8em; }
+            .music-disc { width: 180px; height: 180px; }
+            .music-content { padding: 15px; gap: 10px; }
+            .music-content .music-title { font-size: 1.8em; }
+            .album-cover-wrapper { width: 180px; height: 180px; }
+            .lyrics-box-music { max-height: 150px; font-size: 0.8em; padding: 10px; }
+            .nav-button#playMusicButton { padding: 10px 25px; font-size: 0.9em; }
+            .visualizer-bar { width: 5px; }
+            .closing-content { padding: 20px; }
+            .closing-content h1 { font-size: 2.5em; }
+            .closing-content h2 { font-size: 1.1em; }
+            .closing-content p { font-size: 0.9em; }
+            .closing-signature { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container" id="slideContainer">
+        
+        <div class="slide" id="slide0" onclick="nextSlide()">
+            <audio id="hbdAudio" loop> 
+                <source src="HBD INSTRUMEN FOR NARA.mp3" type="audio/mpeg">
+                Browser Anda tidak mendukung elemen audio.
+            </audio>
+
+            <div class="sparkle-container">
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+            </div>
+
+            <div class="pre-intro-content">
+                <span>H</span><span>a</span><span>l</span><span>l</span><span>o</span><span>!</span> <span>❤️</span>
+            </div>
+            <p class="small-caption">Klik di mana saja untuk melanjutkan...</p>
+        </div>
+
+        <div class="slide" id="slide1">
+            <div class="heart-container">
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+            </div>
+            <div class="intro-content" onclick="nextSlide()">
+                <div class="cute-character-wrapper">
+                    <img src="https://uploads.onecompiler.io/442rs4afc/443cj8j6c/IMG-20251101-WA0020.jpg" alt="Nayaaaaaa" class="cute-character">
+                </div>
+                <p class="click-here-text">Click Here!</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide2">
+            
+            <div class="gallery-decoration top-left">💖</div>
+            <div class="gallery-decoration bottom-right">✨</div>
+            <div class="gallery-decoration mid-left">🌸</div>
+            <div class="gallery-decoration mid-right">💖</div>
+            <div class="gallery-decoration top-right">✨</div>
+
+            <div class="gallery-content">
+                <h2>Cantikkuuh📸</h2>
+                
+                <div class="emoji-gap e1">😊</div>
+                <div class="emoji-gap e2">❤️</div>
+                <div class="emoji-gap e3">🌟</div>
+                <div class="emoji-gap e4">✨</div>
+                <div class="emoji-gap e5">😄</div>
+                <div class="emoji-gap e6">🥰</div>
+
+                <div class="photo-grid">
+                    <div class="photo-frame"><img src="https://uploads.onecompiler.io/442rs4afc/443cj8j6c/IMG-20251101-WA0013.jpg" alt="Nara Foto 1"></div>
+                    <div class="photo-frame"><img src="https://uploads.onecompiler.io/442rs4afc/443cj8j6c/IMG-20251030-WA0004.jpg" alt="Nara Foto 2"></div>
+                    <div class="photo-frame"><img src="https://uploads.onecompiler.io/442rs4afc/443cj8j6c/IMG-20251101-WA0016.jpg" alt="Nara Foto 3"></div>
+                    <div class="photo-frame"><img src="https://uploads.onecompiler.io/442rs4afc/443cj8j6c/IMG-20251101-WA0021.jpg" alt="Nara Foto 4"></div>
+                    <div class="photo-frame"><img src="https://uploads.onecompiler.io/442rs4afc/443cj8j6c/IMG-20251025-WA0093.jpg" alt="Nara Foto 5"></div>
+                    <div class="photo-frame"><img src="https://uploads.onecompiler.io/442rs4afc/443cgxn7z/karakter%20lucu.jpg" alt="Nara Foto 6"></div>
+                    </div>
+                <button class="nav-button" onclick="nextSlide()">Lihat Pesan Spesial 💌</button>
+            </div>
+        </div>
+
+        <div class="slide" id="slide3">
+            <div class="balloon-container">
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+                <div class="balloon"></div>
+            </div>
+            <div class="container">
+                <h1>Happy Birthday Nayaaquh</h1>
+                <h2>Untuk Nara Nexsa-ku Tersayang</h2>
+
+                <div class="message">
+                    <p>Naraa, di hari spesialmu ini, di usiamu yang ke-18, aku ingin kamu tahu betapa berartinya kamu dalam hidupku.</p>
+                    <p>Sejak pertama kali kita saling mengenal, kamu selalu menjadi cahaya di antara keramaian, kehangatan di tengah hari yang penat. Kamu bukan sekadar teman, tapi rumah bagi banyak tawa dan cerita. Ada sesuatu dalam caramu berbicara, tertawa, dan mendengar — seolah dunia menjadi sedikit lebih lembut setiap kali kamu ada.</p>
+                    <p>Aku tahu, perjalananmu tak pernah mudah. Namun di tengah hiruk pikuk kehidupan dan padatnya dunia sekolah, kamu tetap tegak dengan langkahmu sendiri. Di tengah kesibukanmu, kamu menjadi wanita yang mandiri — mengusahakan apa yang kamu impikan, dan mencapainya melalui kerja keras serta ketulusan hatimu sendiri. Kamu belajar, bekerja, dan berjuang tanpa henti; aktif di organisasi, bersinar di kelas, dan menjemput kemenangan di berbagai perlombaan. Kamu tumbuh bukan hanya karena keadaan, tetapi karena kemauanmu untuk terus berjalan, bahkan ketika dunia terasa berat.</p>
+                    <p>Semoga di usia barumu ini, semesta berbaik hati padamu. Biarlah semua doa yang pernah kamu bisikkan pelan, perlahan menemukan jalannya menuju kenyataan. Aku yakin, mimpimu untuk menjadi mahasiswa Teknik Kimia di Universitas Indonesia bukan sekadar angan — itu takdir yang sedang menunggu waktunya. Teruslah berlari, Naraa, karena dunia ini terlalu kecil untuk membatasi langkahmu.</p>
+                    <p style="margin-top: 15px;">Setiap waktu bersamamu adalah kisah yang tak pernah membosankan. Kamu adalah kejutan yang manis, hadir di saat yang tak terduga, tapi meninggalkan jejak yang dalam. Aku bersyukur pernah mengenalmu, dan akan selalu bangga menyaksikanmu tumbuh, berjuang, dan bersinar seterang bintang yang kamu kejar.</p>
+                    <p style="text-align: right; margin-top: 25px; font-weight: 600;">Dari Orang Favoritmu</p>
+                </div>
+                <button class="nav-button" onclick="nextSlide()">Lanjut ke Lagu Spesial 🎶</button>
+            </div>
+        </div>
+
+        <div class="slide" id="slide4">
+            <div class="music-particle-container">
+                </div>
+            <div class="music-content">
+                <h3 class="music-title">Lagu Favorit kamu: Cincin - Hindia</h3>
+                <div class="album-cover-wrapper">
+                    
+                    <div class="music-disc" id="musicDisc">
+                        <div class="disc-center"></div> 
+                    </div>
+                    <img src="https://uploads.onecompiler.io/442rs4afc/443cgxn7z/cover%20lagu%20cincin.jpeg" alt="Cover Album Cincin" class="album-cover" id="albumCover">
+                </div>
+                
+                <div class="visualizer" id="musicVisualizer">
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                </div>
+
+                <button class="nav-button" id="playMusicButton" onclick="toggleAudio()">Putar Lagu</button>
+                
+                <audio id="cincinAudio" loop preload="auto">
+                    <source src="LAGU FAV NARA.mp3" type="audio/mpeg">
+                    Browser Anda tidak mendukung elemen audio.
+                </audio>
+                
+                <div class="lyrics-box-music" id="lyricsBox">
+                    <pre>
+                        Kau bermasalah jiwa aku pun rada gila
+                        Jodoh akal-akalan neraka kita bersama
+                        Kau langganan menangis lakimu muntah-muntah
+                        Begitu terus sampai Iblis tobat dan sedekah
+                        Terkadang rasanya leher terbakar hingga pagi
+                        Seperti aku hidup berpasangan dengan api
+                        Berhenti ulangi psikolog dan terapi
+                        Aku isi bensin kita coba lagi
+
+                        Tapi s'belumnya
+                        Sejuta sayang untukmu, Cinta
+                        Kar'na aku pun bola panas juga
+                        Kadang lebih atau sama parahnya
+                        Dan jika bicara tentang masa depan
+                        Aku pun bingung, tak punya tebakan
+                        Lagu cinta untuk akhir dunia
+                        Lihat kami nyanyikan ini bersama
+
+                        Smoga hidup kita t'rus begini-gini saja
+                        Walau sungai meluap dan kurs tak masuk logika
+                        Smoga kita mencintai apa adanya
+                        Walau katanya s'karang ku bisa masuk penjara
+                        Satu per satu, hari per hari
+                        Yang menyakiti, benahi lagi
+                        Perihal esok 'tuk nanti dulu
+                        Perihal cincin, kucari waktu
+
+                        Persetan kata siapa
+                        Mau bilang apa, tak guna
+                        M'reka hanya tahu namamu
+                        M'reka takkan jadi diriku
+                        Persetan aturan cinta
+                        Tak tertulis di atas batu
+                        Apa kau ingin menjadi benar, atau ingin menjadi muda
+
+                        Smoga hidup kita t'rus begini-gini saja
+                        Walau sungai meluap dan kurs tak masuk logika
+                        Smoga kita mencintai apa adanya
+                        Walau katanya s'karang ku bisa masuk penjara
+                        Satu per satu, hari per hari
+                        Yang menyakiti, benahi lagi
+                        Perihal esok 'tuk nanti dulu
+                        Perihal cincin, kucari waktu
+                    </pre>
+                </div>
+                <button class="nav-button" onclick="nextSlide()">Selesai & Pesan Akhir 💖</button>
+            </div>
+        </div>
+        
+        <div class="slide" id="slide5">
+            <div class="star-decoration s1">⭐</div>
+            <div class="star-decoration s2">✨</div>
+            <div class="star-decoration s3">💖</div>
+            <div class="star-decoration s4">⭐</div>
+
+            <div class="closing-content">
+                <h1>The End?</h1>
+                <h2>Tentu saja, belum!</h2>
+                
+                <p>Naraa, ini bukan akhir, ini adalah awal dari tahun terbaikmu. Seluruh presentasi ini hanyalah sebagian kecil dari apa yang kurasakan dan kulihat darimu.</p>
+                <p>Ingatlah satu hal: di mana pun langkah kakimu membawamu, selalu ada seseorang di sini yang sangat bangga melihat siapa dirimu hari ini, dan yang akan selalu mendukung siapa dirimu di masa depan.</p>
+                <p>Jangan pernah lelah untuk bersinar. Teruslah menjadi Nara Nexsa yang cantik, cerdas, dan penuh semangat.</p>
+                
+                <p style="margin-top: 20px;">Selamat Ulang Tahun, Cintaku!</p>
+                
+                <div class="closing-signature">
+                    With All My Love,
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const slideContainer = document.getElementById('slideContainer');
+        let currentSlide = 0; 
+        const totalSlides = 6; // Slide 0 hingga Slide 5
+
+        const hbdAudio = document.getElementById('hbdAudio');
+        let hbdPlayedOnce = false; 
+
+        const audio = document.getElementById('cincinAudio');
+        const playMusicButton = document.getElementById('playMusicButton');
+        const musicDisc = document.getElementById('musicDisc');
+        const albumCover = document.getElementById('albumCover'); 
+        const musicVisualizer = document.getElementById('musicVisualizer');
+        const slides = document.querySelectorAll('.slide');
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) { 
+                currentSlide++;
+            } else {
+                return; 
+            }
+            
+            slideContainer.style.transform = `translateX(-${currentSlide * 100}vw)`;
+            
+            // 1. Putar lagu HBD saat transisi PERTAMA (dari Slide 0 ke Slide 1)
+            if (currentSlide === 1 && hbdAudio && !hbdPlayedOnce) {
+                hbdAudio.play().then(() => {
+                    console.log("Lagu HBD mulai diputar setelah klik pertama.");
+                    hbdPlayedOnce = true;
+                }).catch(e => {
+                    console.log("Play HBD diblokir. Tidak apa-apa.");
+                    hbdPlayedOnce = true;
+                });
+            }
+
+            // 2. Hentikan lagu HBD HANYA saat pindah ke Slide 4 atau 5
+            if (currentSlide === 4 || currentSlide === 5) {
+                if (hbdAudio && !hbdAudio.paused) {
+                    hbdAudio.pause();
+                    hbdAudio.currentTime = 0; 
+                    console.log("Lagu HBD dimatikan.");
+                }
+            }
+            
+            // 3. Mainkan lagu Cincin saat sampai di Slide 4
+            if (currentSlide === 4) { 
+                setTimeout(() => {
+                    toggleAudio(true); 
+                }, 700); 
+            }
+            
+            // 4. Hentikan lagu Cincin saat pindah ke Slide 5
+            if (currentSlide === 5) {
+                 if (!audio.paused) {
+                    toggleAudio(false); 
+                 }
+            }
+        }
+
+
+        audio.addEventListener('error', (e) => {
+            console.error("Error memutar audio! Pastikan nama file lokal LAGU FAV NARA.mp3 benar.", e);
+            alert("MAAF, lagu Cincin tidak dapat dimainkan. Pastikan file MP3 lokal Anda benar.");
+            playMusicButton.textContent = 'Lagu Error!';
+            musicVisualizer.classList.add('paused'); 
+        });
+
+        function toggleAudio(autoPlay = false) {
+            if (audio.error) { 
+                console.error("Audio player in error state, cannot play.");
+                return;
+            }
+
+            if (autoPlay && audio.paused) {
+                audio.play()
+                    .then(() => {
+                        playMusicButton.textContent = 'Jeda Lagu';
+                        musicDisc.classList.add('playing');
+                        albumCover.classList.add('playing'); 
+                        musicVisualizer.classList.remove('paused'); 
+                    })
+                    .catch(error => {
+                        console.log("Autoplay lagu Cincin diblokir, pengguna harus klik tombol.", error);
+                        playMusicButton.textContent = 'Putar Lagu (Klik!)';
+                        musicDisc.classList.remove('playing');
+                        albumCover.classList.remove('playing'); 
+                        musicVisualizer.classList.add('paused'); 
+                    });
+            } 
+            else if (!autoPlay) { 
+                if (audio.paused) {
+                    audio.play();
+                    playMusicButton.textContent = 'Jeda Lagu';
+                    musicDisc.classList.add('playing');
+                    albumCover.classList.add('playing'); 
+                    musicVisualizer.classList.remove('paused'); 
+                } else {
+                    audio.pause();
+                    playMusicButton.textContent = 'Putar Lagu';
+                    musicDisc.classList.remove('playing');
+                    albumCover.classList.remove('playing');
+                    musicVisualizer.classList.add('paused'); 
+                }
+            }
+        }
+        
+        window.addEventListener('beforeunload', () => {
+            if (!audio.paused) {
+                audio.pause();
+            }
+            if (hbdAudio && !hbdAudio.paused) {
+                hbdAudio.pause();
+            }
+        });
+
+        // Generate more hearts dynamically for a continuous falling effect on slide 1
+        document.addEventListener('DOMContentLoaded', () => {
+            const heartContainerSlide1 = document.querySelector('#slide1 .heart-container');
+            const numberOfAdditionalHearts = 15; 
+
+            for (let i = 0; i < numberOfAdditionalHearts; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                
+                const size = Math.random() * 30 + 20; 
+                heart.style.width = `${size}px`;
+                heart.style.height = `${size}px`;
+
+                heart.style.left = `${Math.random() * 100}%`;
+
+                heart.style.animationDuration = `${Math.random() * 10 + 10}s`; 
+                heart.style.animationDelay = `${Math.random() * 10}s`; 
+
+                if (Math.random() < 0.5) {
+                    heart.style.backgroundColor = 'var(--soft-pink)';
+                } else {
+                    heart.style.backgroundColor = 'var(--dusty-rose)';
+                }
+                heart.style.setProperty('--heart-color', heart.style.backgroundColor); 
+
+                heartContainerSlide1.appendChild(heart);
+            }
+
+            // Generate music particles for slide 4
+            const musicParticleContainer = document.querySelector('.music-particle-container');
+            const particleCount = 30; // Jumlah partikel
+
+            const particles = ['🎵', '🎶', '❤️', '💖', '✨', '🌟']; // Pilihan emoji/karakter
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('music-particle');
+                particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+
+                const size = Math.random() * 20 + 15; // Ukuran 15px - 35px
+                particle.style.fontSize = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`; // Durasi 10-20s
+                particle.style.animationDelay = `${Math.random() * 15}s`; // Delay 0-15s
+
+                musicParticleContainer.appendChild(particle);
+            }
+
+            // Set initial state of visualizer to paused
+            musicVisualizer.classList.add('paused');
+        });
+    </script>
+</body>
+</html>
